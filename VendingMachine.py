@@ -1,9 +1,16 @@
+print('''
+██╗░░░██╗███████╗███╗░░██╗██████╗░██╗███╗░░██╗░██████╗░  ███╗░░░███╗░█████╗░░█████╗░██╗░░██╗██╗███╗░░██╗███████╗
+██║░░░██║██╔════╝████╗░██║██╔══██╗██║████╗░██║██╔════╝░  ████╗░████║██╔══██╗██╔══██╗██║░░██║██║████╗░██║██╔════╝
+╚██╗░██╔╝█████╗░░██╔██╗██║██║░░██║██║██╔██╗██║██║░░██╗░  ██╔████╔██║███████║██║░░╚═╝███████║██║██╔██╗██║█████╗░░
+░╚████╔╝░██╔══╝░░██║╚████║██║░░██║██║██║╚████║██║░░╚██╗  ██║╚██╔╝██║██╔══██║██║░░██╗██╔══██║██║██║╚████║██╔══╝░░
+░░╚██╔╝░░███████╗██║░╚███║██████╔╝██║██║░╚███║╚██████╔╝  ██║░╚═╝░██║██║░░██║╚█████╔╝██║░░██║██║██║░╚███║███████╗
+░░░╚═╝░░░╚══════╝╚═╝░░╚══╝╚═════╝░╚═╝╚═╝░░╚══╝░╚═════╝░  ╚═╝░░░░░╚═╝╚═╝░░╚═╝░╚════╝░╚═╝░░╚═╝╚═╝╚═╝░░╚══╝╚══════╝''')
+
 import random
 
 class VendingMachine:
     def __init__(self):
-        # Initialize vending machine inventory
-       
+        # Define the menu with items, codes, and prices
         self.menu = {
             'A1': {'name': 'Red Bull Energy Drink', 'category': 'Drinks', 'price': 13.00, 'stock': 10},
             'A2': {'name': 'Red Bull Sugarfree', 'category': 'Drinks', 'price': 10.00, 'stock': 10},
@@ -43,17 +50,16 @@ class VendingMachine:
             'D4': {'name': 'Reeses Peanut Butter Cups', 'category': 'Candy', 'price': 3.75, 'stock': 8},
             'D5': {'name': 'Sour Patch Kids', 'category': 'Candy', 'price': 3.00, 'stock': 10},
         }
-               
         self.money_inserted = 0.0
 
     def display_menu(self):
         print("===== Vending Machine Menu =====")
         for code, item in self.menu.items():
-            print(f"{code}: {item['name']} ({item['category']}) - ${item['price']} - Stock: {item['stock']}")
+            print(f"{code}: {item['name']} ({item['category']}) - AED {item['price']} - Stock: {item['stock']}")
 
     def insert_money(self):
         try:
-            self.money_inserted = float(input("Insert money (in dollars): "))
+            self.money_inserted = float(input("Insert money (in dirhams): "))
         except ValueError:
             print("Invalid input. Please enter a valid amount.")
 
@@ -70,7 +76,7 @@ class VendingMachine:
                 # Check for suggestions
                 self.suggest_purchase(item['category'])
 
-                print(f"Remaining balance: ${self.money_inserted:.2f}")
+                print(f"Remaining balance: AED {self.money_inserted:.2f}")
             else:
                 print("Insufficient funds. Please insert more money.")
         elif item and item['stock'] == 0:
@@ -87,7 +93,7 @@ class VendingMachine:
 
     def return_change(self):
         if self.money_inserted > 0:
-            print(f"Returning change: ${self.money_inserted:.2f}")
+            print(f"Returning change: AED {self.money_inserted:.2f}")
             self.money_inserted = 0.0
 
     def run(self):
@@ -105,6 +111,5 @@ class VendingMachine:
 if __name__ == "__main__":
     vending_machine = VendingMachine()
     vending_machine.run()
-
       
    
